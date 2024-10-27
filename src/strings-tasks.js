@@ -37,8 +37,8 @@ function getStringLength(/* value */) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  return typeof value === 'string' || value instanceof String;
 }
 
 /**
@@ -53,8 +53,8 @@ function isString(/* value */) {
  *   concatenateStrings('aa', '') => 'aa'.
  *   concatenateStrings('', 'bb') => 'bb'
  */
-function concatenateStrings(/* value1, value2 */) {
-  throw new Error('Not implemented');
+function concatenateStrings(value1, value2) {
+  return value1.concat(value2);
 }
 
 /**
@@ -83,8 +83,8 @@ function getFirstChar(/* value */) {
  *   removeLeadingAndTrailingWhitespaces('cat ') => 'cat'
  *   removeLeadingAndTrailingWhitespaces('\t\t\tHello, World! ') => 'Hello, World!'
  */
-function removeLeadingAndTrailingWhitespaces(/* value */) {
-  throw new Error('Not implemented');
+function removeLeadingAndTrailingWhitespaces(value) {
+  return value.trim();
 }
 
 /**
@@ -130,8 +130,8 @@ function removeTrailingWhitespaces(/* value */) {
  *   repeatString('', 3) => ''
  *   repeatString('abc', -2) => ''
  */
-function repeatString(/* str, times */) {
-  throw new Error('Not implemented');
+function repeatString(str, times) {
+  return str.repeat(times > 0 ? times : 0);
 }
 
 /**
@@ -148,6 +148,8 @@ function repeatString(/* str, times */) {
  */
 function removeFirstOccurrences(/* str, value */) {
   throw new Error('Not implemented');
+  // const ind = str.indexOf(value);
+  // return str.slice(0, ind).concat(str.slice(ind + value.length));
 }
 
 /**
@@ -367,8 +369,8 @@ function invertCase(/* str */) {
  *   getStringFromTemplate('John','Doe') => 'Hello, John Doe!'
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(/* firstName, lastName */) {
-  throw new Error('Not implemented');
+function getStringFromTemplate(firstName, lastName) {
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -381,8 +383,8 @@ function getStringFromTemplate(/* firstName, lastName */) {
  *   extractNameFromTemplate('Hello, John Doe!') => 'John Doe'
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate(value) {
+  return value.split(',')[1].slice(1, -1);
 }
 
 /**
@@ -396,8 +398,8 @@ function extractNameFromTemplate(/* value */) {
  *   unbracketTag('<span>') => 'span'
  *   unbracketTag('<a>') => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str) {
+  return str.slice(1, -1);
 }
 
 /**
@@ -415,8 +417,8 @@ function unbracketTag(/* str */) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  return str.split(';');
 }
 
 /**
@@ -437,6 +439,22 @@ function extractEmails(/* str */) {
  */
 function encodeToRot13(/* str */) {
   throw new Error('Not implemented');
+  // let res = '';
+  // const aCode = 'a'.charCodeAt(0);
+  // const ACode = 'A'.charCodeAt(0);
+  // function isLetter(ch) {
+  //   return ch.toUpperCase() !== ch.toLowerCase();
+  // }
+  // for (let i = 0; i < str.length; i += 1) {
+  //   if (isLetter(str[i])) {
+  //     const aCodeCurr = str.charCodeAt(i) - aCode >= 0 ? aCode : ACode;
+  //     const ch = String.fromCharCode(aCodeCurr + ((str.charCodeAt(i) - aCodeCurr + 13) % 26));
+  //     res += ch;
+  //   } else {
+  //     res += str[i];
+  //   }
+  // }
+  // return res;
 }
 
 /**
@@ -465,6 +483,12 @@ function encodeToRot13(/* str */) {
  */
 function getCardId(/* value */) {
   throw new Error('Not implemented');
+  // const cards = [
+  //   'A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
+  //   'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦',
+  //   'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
+  //   'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠'];
+  // return cards.indexOf(value);
 }
 
 module.exports = {
