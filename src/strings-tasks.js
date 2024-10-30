@@ -264,8 +264,8 @@ function reverseString(str) {
  *   orderAlphabetically('textbook') => 'bekoottx'
  *   orderAlphabetically('abc123xyz') => '123abcxyz'
  */
-function orderAlphabetically(/* str */) {
-  throw new Error('Not implemented');
+function orderAlphabetically(str) {
+  return str.split('').sort().join('');
 }
 
 /**
@@ -330,8 +330,21 @@ function countVowels(str) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  function isLetter(ch) {
+    return ch.toUpperCase() !== ch.toLowerCase();
+  }
+  const str1 = str
+    .split('')
+    .map((item) => (isLetter(item) ? item.toLowerCase() : ''))
+    .join('');
+  const n = str1.length;
+  for (let i = 0; i <= Math.floor(n / 2); i += 1) {
+    if (str1[i].toLowerCase() !== str1[n - i - 1].toLowerCase()) {
+      return false;
+    }
+  }
+  return true;
 }
 
 /**
@@ -346,8 +359,16 @@ function isPalindrome(/* str */) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  return sentence.split(' ').reduce(
+    (acc, val) => {
+      if (val.length > acc.length) {
+        return val;
+      }
+      return acc;
+    },
+    sentence.slice(0, sentence.indexOf(' '))
+  );
 }
 
 /**
@@ -477,24 +498,25 @@ function extractEmails(str) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
-  // let res = '';
-  // const aCode = 'a'.charCodeAt(0);
-  // const ACode = 'A'.charCodeAt(0);
-  // function isLetter(ch) {
-  //   return ch.toUpperCase() !== ch.toLowerCase();
-  // }
-  // for (let i = 0; i < str.length; i += 1) {
-  //   if (isLetter(str[i])) {
-  //     const aCodeCurr = str.charCodeAt(i) - aCode >= 0 ? aCode : ACode;
-  //     const ch = String.fromCharCode(aCodeCurr + ((str.charCodeAt(i) - aCodeCurr + 13) % 26));
-  //     res += ch;
-  //   } else {
-  //     res += str[i];
-  //   }
-  // }
-  // return res;
+function encodeToRot13(str) {
+  let res = '';
+  const aCode = 'a'.charCodeAt(0);
+  const ACode = 'A'.charCodeAt(0);
+  function isLetter(ch) {
+    return ch.toUpperCase() !== ch.toLowerCase();
+  }
+  for (let i = 0; i < str.length; i += 1) {
+    if (isLetter(str[i])) {
+      const aCodeCurr = str.charCodeAt(i) - aCode >= 0 ? aCode : ACode;
+      const ch = String.fromCharCode(
+        aCodeCurr + ((str.charCodeAt(i) - aCodeCurr + 13) % 26)
+      );
+      res += ch;
+    } else {
+      res += str[i];
+    }
+  }
+  return res;
 }
 
 /**
@@ -521,14 +543,63 @@ function encodeToRot13(/* str */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
-  // const cards = [
-  //   'A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
-  //   'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦',
-  //   'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
-  //   'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠'];
-  // return cards.indexOf(value);
+function getCardId(value) {
+  const cards = [
+    'A♣',
+    '2♣',
+    '3♣',
+    '4♣',
+    '5♣',
+    '6♣',
+    '7♣',
+    '8♣',
+    '9♣',
+    '10♣',
+    'J♣',
+    'Q♣',
+    'K♣',
+    'A♦',
+    '2♦',
+    '3♦',
+    '4♦',
+    '5♦',
+    '6♦',
+    '7♦',
+    '8♦',
+    '9♦',
+    '10♦',
+    'J♦',
+    'Q♦',
+    'K♦',
+    'A♥',
+    '2♥',
+    '3♥',
+    '4♥',
+    '5♥',
+    '6♥',
+    '7♥',
+    '8♥',
+    '9♥',
+    '10♥',
+    'J♥',
+    'Q♥',
+    'K♥',
+    'A♠',
+    '2♠',
+    '3♠',
+    '4♠',
+    '5♠',
+    '6♠',
+    '7♠',
+    '8♠',
+    '9♠',
+    '10♠',
+    'J♠',
+    'Q♠',
+    'K♠',
+  ];
+
+  return cards.indexOf(value);
 }
 
 module.exports = {
