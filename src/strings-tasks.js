@@ -184,8 +184,10 @@ function removeLastOccurrences(str, value) {
  *   sumOfCodes('') => 0
  *   sumOfCodes() => 0
  */
-function sumOfCodes(/* str */) {
-  throw new Error('Not implemented');
+function sumOfCodes(str) {
+  return str
+    ? str.split('').reduce((acc, _, ind) => acc + str.charCodeAt(ind), 0)
+    : 0;
 }
 
 /**
@@ -231,8 +233,10 @@ function endsWith(str, substr) {
  *   formatTime(0, 45) => "00:45"
  *   formatTime(0, 0) => "00:00"
  */
-function formatTime(/* minutes, seconds */) {
-  throw new Error('Not implemented');
+function formatTime(minutes, seconds) {
+  return `${minutes.toString().padStart(2, '0')}:${seconds
+    .toString()
+    .padStart(2, '0')}`;
 }
 
 /**
@@ -374,8 +378,22 @@ function reverseWords(str) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  function reverseCase(s) {
+    if (s === s.toUpperCase()) {
+      return s.toLowerCase();
+    }
+    return s.toUpperCase();
+  }
+  return str
+    .split(' ')
+    .map((item) =>
+      item
+        .split('')
+        .map((s) => reverseCase(s))
+        .join('')
+    )
+    .join(' ');
 }
 
 /**
